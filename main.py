@@ -10,18 +10,16 @@ soup = BeautifulSoup(page.content, 'html.parser')
 
 container = soup.find(id='pagemain')
 
-kurCins = container.find_all(class_='mt1')
-kurDeger = container.find_all(class_='mt2')
+currTyp = container.find_all(class_='mt1')
+currVal = container.find_all(class_='mt2')
 
-kurIsim = [cins.get_text() for cins in kurCins]
-kurDeger = [deger.get_text() for deger in kurDeger]
+currName = [typ.get_text() for typ in currTyp]
+currValue = [val.get_text() for val in currVal]
 
 kur_anlik = pd.DataFrame(
-    {'kurisim': kurIsim,
-    'kurdeger': kurDeger}
+    {'currName': currName,
+    'currValue': currValue}
 )
-
-print(kur_anlik)
 
 kur_anlik.to_csv('kur.csv')
 
